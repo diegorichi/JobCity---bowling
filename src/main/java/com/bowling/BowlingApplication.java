@@ -13,18 +13,17 @@ import org.springframework.core.env.Environment;
 
 import com.bowling.services.ApplicationService;
 
-
 /**
  * This is the main class that implements {@link CommandLineRunner}
+ * 
  * @author Diego Richi
  *
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-public class BowlingApplication implements CommandLineRunner  {
+public class BowlingApplication implements CommandLineRunner {
 
 	private static Logger LOG = LoggerFactory.getLogger(BowlingApplication.class);
-
 
 	public static void main(String[] args) {
 		if (Arrays.stream(args).noneMatch((String arg) -> arg.contains("data"))) {
@@ -33,7 +32,7 @@ public class BowlingApplication implements CommandLineRunner  {
 		}
 		SpringApplication.run(BowlingApplication.class, args);
 	}
-	
+
 	private static void printHelp() {
 
 		LOG.error("The input file should be pass as a parameter --data=<path to the input file>");
@@ -46,13 +45,11 @@ public class BowlingApplication implements CommandLineRunner  {
 
 	@Autowired
 	private Environment environment;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
-	
-		if (!(Arrays.stream(environment.getActiveProfiles()).anyMatch((String profile) ->
-			"test".equalsIgnoreCase(profile)
-		))) {
+
+		if (!(Arrays.stream(environment.getActiveProfiles()).anyMatch("test"::equalsIgnoreCase))) {
 			applicationService.processGame();
 		}
 	}

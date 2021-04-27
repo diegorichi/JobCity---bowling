@@ -71,7 +71,7 @@ public class BowlingResult implements GameResult {
 	}
 
 	private String getFoulOrValue(Integer shotScore, Boolean foul) {
-		return foul ? "F" : String.valueOf(shotScore);
+		return Boolean.TRUE.equals(foul) ? "F" : String.valueOf(shotScore);
 	}
 
 	private int getScore(List<Shot> value, int i, int shotBol) {
