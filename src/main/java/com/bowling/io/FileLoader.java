@@ -34,7 +34,7 @@ public class FileLoader implements InputLoader {
     private String dataFile;
 
 	@Override
-	public Game getData() throws UnsupportedEncodingException, IOException {
+	public Game getData() throws IOException {
 
 		Stream<String> data = fileStrategyLoader.loadInputfile(dataFile);
 

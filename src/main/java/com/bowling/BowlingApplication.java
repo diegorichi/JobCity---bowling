@@ -52,8 +52,8 @@ public class BowlingApplication implements CommandLineRunner  {
 	
 		if (!(Arrays.stream(environment.getActiveProfiles()).anyMatch((String profile) ->
 			"test".equalsIgnoreCase(profile)
-		)))
-
-		applicationService.processGame();
+		))) {
+			applicationService.processGame();
+		}
 	}
 }

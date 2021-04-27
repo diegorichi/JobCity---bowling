@@ -24,8 +24,8 @@ public class GameLinesLoader implements FileStrategyLoader {
 
 	    //load as bufferedReader
 	    BufferedReader reader = Files.newBufferedReader(path);
-	    
 	    return reader.lines();
+	    
 	}
 
 }

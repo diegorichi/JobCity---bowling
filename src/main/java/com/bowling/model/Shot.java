@@ -8,7 +8,7 @@ public class Shot{
 
 	private String originalLine;
 
-	private String shot = "";
+	private String shotField = "";
 
 	private Integer shotScore = 0;
 
@@ -43,7 +43,7 @@ public class Shot{
 		} else {
 			setFoul("F".equalsIgnoreCase(shot));
 		}
-		this.shot = shot;
+		this.shotField = shot;
 	}
 
 	public Integer getShotScore() {
@@ -55,7 +55,7 @@ public class Shot{
 	}
 
 	public String getShot() {
-		return shot;
+		return shotField;
 	}
 	
 	public Boolean getFoul() {
@@ -77,7 +77,7 @@ public class Shot{
 
 	@Override
 	public String toString() {
-		return "Shot [shot=" + shot + ", foul=" + foul + ", playerName=" + playerName + "]";
+		return "Shot [shot=" + shotField + ", foul=" + foul + ", playerName=" + playerName + "]";
 	}
 
 	//always in the model objects we need to implement
@@ -90,7 +90,7 @@ public class Shot{
 		result = prime * result + ((game == null) ? 0 : game.hashCode());
 		result = prime * result + ((originalLine == null) ? 0 : originalLine.hashCode());
 		result = prime * result + ((playerName == null) ? 0 : playerName.hashCode());
-		result = prime * result + ((shot == null) ? 0 : shot.hashCode());
+		result = prime * result + ((shotField == null) ? 0 : shotField.hashCode());
 		result = prime * result + ((shotScore == null) ? 0 : shotScore.hashCode());
 		return result;
 	}
@@ -124,10 +124,10 @@ public class Shot{
 				return false;
 		} else if (!playerName.equals(other.playerName))
 			return false;
-		if (shot == null) {
-			if (other.shot != null)
+		if (shotField == null) {
+			if (other.shotField != null)
 				return false;
-		} else if (!shot.equals(other.shot))
+		} else if (!shotField.equals(other.shotField))
 			return false;
 		if (shotScore == null) {
 			if (other.shotScore != null)
