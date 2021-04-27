@@ -13,11 +13,11 @@ import com.bowling.model.Shot;
 public class ShotValidator implements Validator<Shot> {
 
 	// this properties are injected from the property file.
-	private Integer value_max;
-	private Integer value_min;
-	private String value_foul;
-	private String value_spare;
-	private String value_strike;
+	private Integer valueMax;
+	private Integer valueMin;
+	private String valueFoul;
+	private String valueSpare;
+	private String valueStrike;
 
 	@Override
 	public boolean validate(Shot s) {
@@ -27,62 +27,72 @@ public class ShotValidator implements Validator<Shot> {
 
 		String shot = s.getShot();
 
-		if (shot == null || shot == "")
+		if (isNullOrEmpty(shot))
 			return false;
 
 		if (NumberUtils.isDigits(shot)) {
 			Integer shotScore = s.getShotScore();
-			if (!(shotScore >= value_min && shotScore <= value_max))
+			if (!(shotScore >= valueMin && shotScore <= valueMax))
 				return false;
-		}else {
-			if (!(value_foul.equalsIgnoreCase(shot) && (s.getFoul().equals(Boolean.TRUE))))  {
+		} else {
+			if (!isfoulOrSpareOrStrike(shot, s))
 				return false;
-			}else {
-				if (!s.getFoul() && (!value_spare.equals(shot) || !value_strike.equalsIgnoreCase(shot)))
-					return false;
-			}
+
 		}
 
 		return true;
 	}
 
-	public Integer getValue_max() {
-		return value_max;
+	private boolean isfoulOrSpareOrStrike(String shot, Shot s) {
+		boolean foul = (valueFoul.equalsIgnoreCase(shot) && (s.getFoul().equals(Boolean.TRUE)));
+		boolean spareOrStrike = (!s.getFoul() && (valueSpare.equals(shot) || valueStrike.equalsIgnoreCase(shot)));
+
+		return foul || spareOrStrike;
 	}
 
-	public void setValue_max(Integer value_max) {
-		this.value_max = value_max;
+	private boolean isNullOrEmpty(String shot) {
+		return shot == null || "".equals(shot);
 	}
 
-	public Integer getValue_min() {
-		return value_min;
+	public Integer getValueMax() {
+		return valueMax;
 	}
 
-	public void setValue_min(Integer value_min) {
-		this.value_min = value_min;
+	public void setValueMax(Integer valueMax) {
+		this.valueMax = valueMax;
 	}
 
-	public String getValue_foul() {
-		return value_foul;
+	public Integer getValueMin() {
+		return valueMin;
 	}
 
-	public void setValue_foul(String value_foul) {
-		this.value_foul = value_foul;
+	public void setValueMin(Integer valueMin) {
+		this.valueMin = valueMin;
 	}
 
-	public String getValue_strike() {
-		return value_strike;
+	public String getValueFoul() {
+		return valueFoul;
 	}
 
-	public void setValue_strike(String value_strike) {
-		this.value_strike = value_strike;
+	public void setValueFoul(String valueFoul) {
+		this.valueFoul = valueFoul;
 	}
 
-	public String getValue_spare() {
-		return value_spare;
+	public String getValueSpare() {
+		return valueSpare;
 	}
 
-	public void setValue_spare(String value_spare) {
-		this.value_spare = value_spare;
+	public void setValueSpare(String valueSpare) {
+		this.valueSpare = valueSpare;
 	}
+
+	public String getValueStrike() {
+		return valueStrike;
+	}
+
+	public void setValueStrike(String valueStrike) {
+		this.valueStrike = valueStrike;
+	}
+
+
 }

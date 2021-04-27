@@ -19,7 +19,7 @@ public class BowlingResult implements GameResult {
 
 	@Autowired
 	MessageSource messageSource;
-	
+
 	@Override
 	public Map<String, List<String>> getScoreGame(List<Shot> value) {
 
@@ -35,6 +35,7 @@ public class BowlingResult implements GameResult {
 			Shot shotItem = value.get(i);
 			Integer shotScore = shotItem.getShotScore();
 			Boolean foul = shotItem.getFoul();
+
 			if (shotScore == 10) {
 				acumScore += getScore(value, i, shotBol);
 				score.add(String.valueOf(acumScore));
@@ -43,43 +44,34 @@ public class BowlingResult implements GameResult {
 				continue;
 			}
 			if (shotBol == 1) {
-				if (foul) {
-					pinfall.add("F");
-				} else {
-					pinfall.add(String.valueOf(shotScore));
-				}
+				pinfall.add(getFoulOrValue(shotScore, foul));
 				turnScore = shotScore;
 				shotBol = 2;
 			} else {
 				acumScore += getScore(value, i, shotBol);
 				score.add(String.valueOf(acumScore));
-				if (shotScore + turnScore == 10) {
-					pinfall.add("/");
-				} else {
-					if (foul) {
-						pinfall.add("F");
-					} else {
-						pinfall.add(String.valueOf(shotScore));
-					}
-				}
+				
+				String pinfallValue =  shotScore + turnScore == 10?"/":getFoulOrValue(shotScore, foul);
+				pinfall.add(pinfallValue);
 				shotBol = 1;
 			}
 		}
 
 		scoreResult.put(PINFALL, pinfall);
-		scoreResult.put(SCORE, score.subList(0,10));
-		
+		scoreResult.put(SCORE, score.subList(0, 10));
 
-		
-		
-		if (score.size()!=10) {
-			scoreResult.put(ERRORS,new ArrayList<>());
-			scoreResult.get(ERRORS).add(
-					messageSource.getMessage("score.size.invalid", null, Locale.getDefault())
-				);
+		if (score.size() != 10)
+
+		{
+			scoreResult.put(ERRORS, new ArrayList<>());
+			scoreResult.get(ERRORS).add(messageSource.getMessage("score.size.invalid", null, Locale.getDefault()));
 		}
 
 		return scoreResult;
+	}
+
+	private String getFoulOrValue(Integer shotScore, Boolean foul) {
+		return foul ? "F" : String.valueOf(shotScore);
 	}
 
 	private int getScore(List<Shot> value, int i, int shotBol) {
@@ -88,8 +80,8 @@ public class BowlingResult implements GameResult {
 
 		if (shotScore == 10) {
 			int size = value.size();
-			int nextShotOne = i+1 < size ? value.get(i + 1).getShotScore() : 0;
-			int nextshotTwo = i+2 < size ? value.get(i + 2).getShotScore() : 0;
+			int nextShotOne = i + 1 < size ? value.get(i + 1).getShotScore() : 0;
+			int nextshotTwo = i + 2 < size ? value.get(i + 2).getShotScore() : 0;
 			return 10 + nextShotOne + nextshotTwo;
 		}
 		if (shotBol == 2) {

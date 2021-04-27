@@ -57,7 +57,7 @@ class BowlingExtremeCasesTests {
 			assertEquals(10, score.size());
 		}
 		
-		assertEquals(game.getPlayers().size(), 2);
+		assertEquals(2, game.getPlayers().size());
 		
 	}
 
@@ -83,7 +83,7 @@ class BowlingExtremeCasesTests {
 			assertEquals(10, score.size());
 		}
 		
-		assertEquals(game.getPlayers().size(), 2);
+		assertEquals(2, game.getPlayers().size());
 		
 	}
 

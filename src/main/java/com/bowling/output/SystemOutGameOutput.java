@@ -43,8 +43,8 @@ public class SystemOutGameOutput implements GameOutput {
 
 	private void printScore(StringBuilder scoreBuilder, Map<String, List<String>> scoreGame) {
 		List<String> score = scoreGame.get(BowlingResult.SCORE);
-		scoreBuilder.append("Score  ");
-		String spaces = "  ";
+		scoreBuilder.append("Score\t\t");
+		String spaces = "\t\t";
 		for (int i = 0; i < score.size(); i++) {
 			String element = score.get(i);
 			if (i == (score.size() - 1)) {
@@ -57,8 +57,8 @@ public class SystemOutGameOutput implements GameOutput {
 
 	private void printPinfall(StringBuilder pinfallBuilder, Map<String, List<String>> scoreGame) {
 		List<String> pinfall = scoreGame.get(BowlingResult.PINFALL);
-		pinfallBuilder.append("Pinfalls ");
-		String spaces = " ";
+		pinfallBuilder.append("Pinfalls\t");
+		String spaces = "\t";
 		for (int i = 0; i < pinfall.size(); i++) {
 			String item = pinfall.get(i);
 			if ("X".equalsIgnoreCase(item)) {
@@ -80,12 +80,12 @@ public class SystemOutGameOutput implements GameOutput {
 	}
 
 	private void printFrame(PrintStream out) {
-		StringBuilder frame = new StringBuilder("Frame  ");
+		StringBuilder frame = new StringBuilder("Frame\t\t");
 
 		for (int j = 1; j < 11; j++) {
 			frame.append(j);
 			if (j < 10)
-				frame.append("  ");
+				frame.append("\t\t");
 		}
 		frame = frame.append(System.lineSeparator());
 		out.print(frame.toString());

@@ -17,9 +17,9 @@ public class BowlingValidator implements Validator<Bowling> {
 
 	// this properties are injected from the property file.
 	private Integer players;
-	private Integer max_shots;
-	private Integer min_shots;
-	private Integer players_min_len;
+	private Integer maxShots;
+	private Integer minShots;
+	private Integer playersMinLen;
 	
 	@Override
 	public boolean validate(Bowling b) {
@@ -27,32 +27,24 @@ public class BowlingValidator implements Validator<Bowling> {
 		if (b == null)
 			return false;
 
-		Map<String, List<Shot>> players = b.getPlayers();
+		Map<String, List<Shot>> playersMap = b.getPlayers();
 
 		//validate the size of players
-		if (players.size() != this.players)
+		if (playersMap.size() != this.players)
 			return false;
 
 		//validate the shot quantity
-		if (!(players.entrySet().stream().allMatch(entry -> 
-					(entry.getValue().size() <= max_shots && entry.getValue().size() >= min_shots) 
+		if (!(playersMap.entrySet().stream().allMatch(entry -> 
+					(entry.getValue().size() <= maxShots && entry.getValue().size() >= minShots) 
 				)
 			))
 			return false;
 
 		//validate the min len for name of players
-		if (!(players.entrySet().stream().allMatch(entry -> entry.getKey().length() >= players_min_len)))
+		if (!(playersMap.entrySet().stream().allMatch(entry -> entry.getKey().length() >= playersMinLen)))
 			return false;
 
 		return true;
-	}
-
-	public Integer getPlayers_min_len() {
-		return players_min_len;
-	}
-
-	public void setPlayers_min_len(Integer players_min_len) {
-		this.players_min_len = players_min_len;
 	}
 
 	public Integer getPlayers() {
@@ -63,20 +55,28 @@ public class BowlingValidator implements Validator<Bowling> {
 		this.players = players;
 	}
 
-	public Integer getMax_shots() {
-		return max_shots;
+	public Integer getMaxShots() {
+		return maxShots;
 	}
 
-	public void setMax_shots(Integer max_shots) {
-		this.max_shots = max_shots;
+	public void setMaxShots(Integer maxShots) {
+		this.maxShots = maxShots;
 	}
 
-	public Integer getMin_shots() {
-		return min_shots;
+	public Integer getMinShots() {
+		return minShots;
 	}
 
-	public void setMin_shots(Integer min_shots) {
-		this.min_shots = min_shots;
+	public void setMinShots(Integer minShots) {
+		this.minShots = minShots;
+	}
+
+	public Integer getPlayersMinLen() {
+		return playersMinLen;
+	}
+
+	public void setPlayersMinLen(Integer playersMinLen) {
+		this.playersMinLen = playersMinLen;
 	}
 
 }

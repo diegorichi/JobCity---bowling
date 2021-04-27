@@ -95,10 +95,8 @@ public class StringToBowlingConverter implements Converter<Stream<String>, Game>
 			shot.setPlayerName(playerName);
 
 			shot.setShot(split[1]);
-
-			if (!players.containsKey(playerName)) {
-				players.put(playerName, new ArrayList<>());
-			}
+			
+			players.computeIfAbsent(playerName, k -> new ArrayList<>());
 			// we return the shot as an optional
 			return Optional.of(shot);
 

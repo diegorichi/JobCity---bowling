@@ -15,14 +15,13 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.bowling.model.Game;
 
-
 @SpringBootTest
 @ActiveProfiles(profiles = "test")
 class BowlingApplicationTests {
 
 	@Autowired
 	ApplicationContext applicationcontext;
-	
+
 	@Autowired
 	private Converter<Stream<String>, Game> streamToGame;
 
@@ -31,9 +30,9 @@ class BowlingApplicationTests {
 		// test invalid lines
 		String[] invalidLinesTest = { "", "", null, "Fido" };
 		Game game = streamToGame.convert(Arrays.stream(invalidLinesTest));
-		assertEquals(game.getPlayers().size(), 0);
+		assertEquals(0, game.getPlayers().size());
 
-		//test null and return empty game
+		// test null and return empty game
 		Game gameNull = streamToGame.convert(null);
 		assertTrue(gameNull.getPlayers().isEmpty());
 
@@ -41,11 +40,8 @@ class BowlingApplicationTests {
 		String[] shotInvalidTest = { "Adrian	K", "Jhon	-2", "Fido	15" };
 		Game gameInvalidShot = streamToGame.convert(Arrays.stream(shotInvalidTest));
 		assertEquals(3, gameInvalidShot.getPlayers().size());
-		assertTrue(gameInvalidShot.getPlayers().entrySet().stream().allMatch(entry ->
-			entry.getValue().isEmpty()
-		));
-		
-		
+		assertTrue(gameInvalidShot.getPlayers().entrySet().stream().allMatch(entry -> entry.getValue().isEmpty()));
+
 	}
 
 }

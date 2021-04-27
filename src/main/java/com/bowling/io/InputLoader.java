@@ -14,6 +14,6 @@ import com.bowling.model.Game;
  */
 public interface InputLoader {
 
-	Game getData() throws UnsupportedEncodingException, IOException;
+	Game getData() throws IOException;
 	
 }

@@ -36,85 +36,116 @@
 
 This is a Project that runs from command line and return the sheet with the game result.
 
+## Notes
+
+If you are runnning this into a windows system, you need to use mvnw instead mvn command line
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 To get the project you can clone from my repository on github:
 
 ```
-
+https://github.com/diegorichi/bowling.git
 ```
-
-purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Also you can use the zip i've sended by email.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+You need to install  the following.
 
 ```
-Give examples
+https://www.oracle.com/ar/java/technologies/javase/javase-jdk8-downloads.html
+https://git-scm.com/downloads
+https://maven.apache.org/download.cgi
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
+Also you can install the optional software to package and extend the application. <br>
+An IDE:
 ```
-Give the example
-```
-
-And repeat
+https://spring.io/tools
+https://www.jetbrains.com/idea/download/
+https://code.visualstudio.com/download
 
 ```
-until finished
+If you want to use a docker image
+```
+https://www.docker.com/products/docker-desktop
+```
+##  Installing <a name = "installing"></a>
+
+After install the required software, you can build, compile and run the project.<br>
+
+To clean and build the package
+```
+mvn clean package
+```
+and then you can see the message at the end: <br/>
+```
+[INFO] BUILD SUCCESS
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+If you want to build the docker image:
+
+```
+docker build -t richi/bowling-spring-boot-docker .
+```
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+If you want to run only the test cases, just run into the root folder this simple command.
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+mvn test
 ```
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+There are three ways to use this application.<br/>
+
+With pure java command line:
+```
+java -jar target\bowling-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --data=.\gamedata.txt
+```
+With maven running the spring-boot application:
+```
+mvn spring-boot:run -Dspring-boot.run.arguments=--data=.\gamedata.txt -P dev
+```
+of course you can use prod as -P (Profile) parameter<br/>
+
+With docker if you have builded the image
+```
+docker run -v /home/diego/projects/bowling:/tmp/ richidiego/richi:bowling-spring-boot-docker --data=/tmp/gamedata.txt
+```
+I want to explain this command line of docker:<br/>
+-v is used to link a local folder with a folder inside the container creating a volume. In this way you can point the local folder to the folder containing the files with the data that you want to test.<br/>
+Then you need to add the name of the image builded in [installing](#installing)<br/>
+
+--data is user to refer to the game data file that you have in your local folder (remember that you've linked containing folder with -v parameter)
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+Also to push or pull into your docker repository:
+docker push richidiego/richi:bowling-spring-boot-docker
+docker pull richidiego/richi:bowling-spring-boot-docker
+
+where richidiego/richi is the your own repository imagen name
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [STS](https://spring.io/tools)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Maven](https://maven.apache.org/download.cgi)
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Java 8](https://www.oracle.com/ar/java/technologies/javase/javase-jdk8-downloads.html)
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@Diego Richi](https://www.linkedin.com/in/diegorichi/)
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+## 🎉 To continue working
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+These items are realted to extend the bowling app funcionality
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- Add a security.
+- Expose with a REST api.
+- Add persistence like a JPA.
+- Implements another game with the same principle and base, for example a chess game.
