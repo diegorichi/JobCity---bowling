@@ -68,9 +68,14 @@ https://www.docker.com/products/docker-desktop
 
 After install the required software, you can build, compile and run the project.<br>
 
+### NOTE: to execute with maven, you need to change permission to allow run it.
+```
+chmod +x mvnw
+```
+
 To clean and build the package
 ```
-mvnw clean package
+./mvnw clean package
 ```
 and then you can see the message at the end: <br/>
 ```
@@ -88,7 +93,7 @@ docker build -t richi/bowling-spring-boot-docker .
 If you want to run only the test cases, just run into the root folder this simple command.
 
 ```
-mvnw test
+./mvnw test
 ```
 
 ## 🎈 Usage <a name="usage"></a>
@@ -97,11 +102,11 @@ There are three ways to use this application.<br/>
 
 With pure java command line:
 ```
-java -jar target\bowling-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --data=.\gamedata.txt
+java -jar target/bowling-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --data=./gamedata.txt
 ```
 With maven running the spring-boot application:
 ```
-mvnw spring-boot:run -Dspring-boot.run.arguments=--data=.\gamedata.txt -P dev
+./mvnw spring-boot:run -Dspring-boot.run.arguments=--data=./gamedata.txt -P dev
 ```
 of course you can use prod as -P (Profile) parameter<br/>
 
