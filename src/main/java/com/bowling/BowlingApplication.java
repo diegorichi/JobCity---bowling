@@ -13,6 +13,12 @@ import org.springframework.core.env.Environment;
 
 import com.bowling.services.ApplicationService;
 
+
+/**
+ * This is the main class that implements {@link CommandLineRunner}
+ * @author Diego Richi
+ *
+ */
 @SpringBootApplication
 @EnableAutoConfiguration
 public class BowlingApplication implements CommandLineRunner  {

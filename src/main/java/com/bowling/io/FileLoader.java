@@ -13,7 +13,7 @@ import com.bowling.io.strategy.FileStrategyLoader;
 import com.bowling.model.Game;
 
 /**
- * This is the concrete implementation of InputLoader Interface
+ * This is the concrete implementation of {@link InputLoader} Interface
  * 
  * Here we choose as the exercise purpose, load the input data from file
  * and transform the input data to the game definition.

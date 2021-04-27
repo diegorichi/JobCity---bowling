@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
 
 /**
- * This class is responsible to load the data file with bufferedReader implementation
+ * This class is responsible to load the data file with {@link} {@link BufferedReader} implementation
  * @author Diego Richi
- * @return Stream of lines
+ * @return {@link Stream} of lines
  */
 @Component
 public class GameLinesLoader implements FileStrategyLoader {
