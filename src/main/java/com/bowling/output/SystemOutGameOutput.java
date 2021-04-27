@@ -21,9 +21,9 @@ public class SystemOutGameOutput implements GameOutput {
 
 		StringBuilder players = new StringBuilder();
 
-		data.getPlayers().entrySet().stream().forEach(playerEntry -> {
-			printPlayerData(players, playerEntry, data);
-		});
+		data.getPlayers().entrySet().stream().forEach(playerEntry -> 
+			printPlayerData(players, playerEntry, data)
+		);
 
 		out.println(players.toString());
 

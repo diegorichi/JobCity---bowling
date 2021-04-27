@@ -1,7 +1,6 @@
 package com.bowling.io;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;

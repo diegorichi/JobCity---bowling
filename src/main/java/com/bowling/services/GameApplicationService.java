@@ -26,7 +26,7 @@ public class GameApplicationService implements ApplicationService {
 	private GameOutput gameOutput;
 
 	@Override
-	public void processGame() throws IOException, IOException {
+	public void processGame() throws IOException {
 
 		Game data = inputLoader.getData();
 
