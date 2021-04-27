@@ -27,25 +27,19 @@
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [TODO](#todo)
 
 ## 🧐 About <a name = "about"></a>
 
 This is a Project that runs from command line and return the sheet with the game result.
-
-## Notes
-
-If you are runnning this into a windows system, you need to use mvnw instead mvn command line
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 To get the project you can clone from my repository on github:
 
 ```
-https://github.com/diegorichi/bowling.git
+git clone https://github.com/diegorichi/bowling.git
 ```
 Also you can use the zip i've sended by email.
 
@@ -76,7 +70,7 @@ After install the required software, you can build, compile and run the project.
 
 To clean and build the package
 ```
-mvn clean package
+mvnw clean package
 ```
 and then you can see the message at the end: <br/>
 ```
@@ -94,7 +88,7 @@ docker build -t richi/bowling-spring-boot-docker .
 If you want to run only the test cases, just run into the root folder this simple command.
 
 ```
-mvn test
+mvnw test
 ```
 
 ## 🎈 Usage <a name="usage"></a>
@@ -107,7 +101,7 @@ java -jar target\bowling-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --data=
 ```
 With maven running the spring-boot application:
 ```
-mvn spring-boot:run -Dspring-boot.run.arguments=--data=.\gamedata.txt -P dev
+mvnw spring-boot:run -Dspring-boot.run.arguments=--data=.\gamedata.txt -P dev
 ```
 of course you can use prod as -P (Profile) parameter<br/>
 
@@ -127,7 +121,7 @@ Also to push or pull into your docker repository:
 docker push richidiego/richi:bowling-spring-boot-docker
 docker pull richidiego/richi:bowling-spring-boot-docker
 
-where richidiego/richi is the your own repository imagen name
+where richidiego/richi is the your own repository name on dockerhub
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -141,11 +135,11 @@ where richidiego/richi is the your own repository imagen name
 
 - [@Diego Richi](https://www.linkedin.com/in/diegorichi/)
 
-## 🎉 To continue working
+## ⛏️ TODO <a name = "todo"></a>
 
-These items are realted to extend the bowling app funcionality
+These items are realted to extend the bowling app funcionality and features.
 
-- Add a security.
 - Expose with a REST api.
+- Add a security.
 - Add persistence like a JPA.
 - Implements another game with the same principle and base, for example a chess game.
